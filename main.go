@@ -12,6 +12,7 @@ import (
 const (
 	repoOwner          = "Ajmal-MP"
 	repoName           = "swarmcd"
+	branchName         = "main"
 	lastCommitFilePath = "./lastcommit.txt"
 )
 
@@ -41,6 +42,9 @@ func main() {
 					panic(error)
 				}
 				fmt.Println("deplyed success fully")
+				//pulling the github repository
+				//pull the docker image
+
 			}
 		} else {
 			panic("No data in lastcommit.txt file")
@@ -50,7 +54,7 @@ func main() {
 
 func githubLastcommit() string {
 	remoteURL := "https://github.com/" + repoOwner + "/" + repoName + ".git"
-	cmd := exec.Command("git", "ls-remote", remoteURL, "HEAD")
+	cmd := exec.Command("git", "ls-remote", remoteURL, "HEAD", branchName)
 	byteoutput, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Println("Error:", err)
